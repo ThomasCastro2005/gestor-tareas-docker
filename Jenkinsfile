@@ -11,6 +11,7 @@ pipeline {
     environment {
         COMPOSE_PROJECT_NAME = "ensayo${BUILD_NUMBER}"
         IMAGEN = "gestor-tareas-app:ensayo-${BUILD_NUMBER}"
+        IMAGEN_DB = "gestor-tareas-db:ensayo-${BUILD_NUMBER}"
     }
     stages {
         stage('Descargar cambios') {
@@ -38,13 +39,17 @@ pipeline {
         }
         stage('Construir imagen') {
             steps {
-                sh 'docker build -t "$IMAGEN" .'
+                sh '''
+                    docker build -t "$IMAGEN" .
+                    docker build -t "$IMAGEN_DB" ./db
+                '''
             }
         }
         stage('Ensayo de comunicacion') {
             steps {
                 sh '''
                     set -eu
+                    set +x
                     CLAVE=$(od -An -tx1 -N16 /dev/urandom | tr -d '[:space:]')
                     umask 077
                     cat > .env.ensayo <<EOF
@@ -54,6 +59,8 @@ POSTGRES_DB=pendientes
 DATABASE_URL=postgres://pendientes:$CLAVE@db:5432/pendientes
 PORT=3000
 EOF
+                    set -x
+                    export ARCHIVO_ENTORNO=.env.ensayo
                     docker compose --env-file .env.ensayo -p "$COMPOSE_PROJECT_NAME" up -d --no-build --wait
                     RED=$(docker network ls --format '{{.Name}}' | grep "^${COMPOSE_PROJECT_NAME}_" | head -n 1)
                     test -n "$RED"
@@ -72,6 +79,7 @@ EOF
         always {
             sh '''
                 if [ -f .env.ensayo ]; then
+                    export ARCHIVO_ENTORNO=.env.ensayo
                     docker compose --env-file .env.ensayo -p "$COMPOSE_PROJECT_NAME" down -v || true
                     rm -f .env.ensayo
                 fi
