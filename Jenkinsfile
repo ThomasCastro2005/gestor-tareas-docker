@@ -33,7 +33,7 @@ pipeline {
         }
         stage('Pruebas unitarias') {
             steps {
-                sh 'docker build --target pruebas --progress=plain .'
+                sh 'docker build --target pruebas .'
             }
         }
         stage('Construir imagen') {
