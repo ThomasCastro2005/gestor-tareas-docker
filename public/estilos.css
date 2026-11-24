@@ -1,0 +1,41 @@
+:root {
+  color: #1c1917;
+  background: #f4f1ea;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+body {
+  margin: 0 auto;
+  max-width: 760px;
+  padding: 32px 20px 64px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: end;
+  border-bottom: 1px solid #1c1917;
+  padding-bottom: 16px;
+}
+
+h1, h2 { font-weight: 500; margin: 0; }
+h2 { font-size: 1.25rem; margin-bottom: 12px; }
+.materia { margin: 0 0 6px; font-family: "Segoe UI", sans-serif; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; }
+.estado { margin: 0; font-family: "Segoe UI", sans-serif; font-size: 14px; }
+.estado.ok { color: #166534; }
+.estado.error { color: #991b1b; }
+
+main { display: grid; gap: 28px; margin-top: 28px; }
+form, section { background: #fffdf8; border: 1px solid #d6d3d1; padding: 18px; }
+label, input, textarea, button, li, .aviso { font-family: "Segoe UI", sans-serif; }
+label { display: block; margin: 12px 0 4px; font-size: 14px; }
+input, textarea { width: 100%; box-sizing: border-box; padding: 8px; border: 1px solid #a8a29e; background: #fff; }
+button { margin-top: 14px; background: #1c1917; color: #f4f1ea; border: 0; padding: 8px 14px; cursor: pointer; }
+ul { list-style: none; margin: 0; padding: 0; }
+li { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid #e7e5e4; }
+li.hecha .titulo { text-decoration: line-through; color: #78716c; }
+.acciones { display: flex; gap: 8px; }
+.acciones button { margin: 0; background: transparent; color: #1c1917; border: 1px solid #1c1917; }
+.aviso { color: #991b1b; font-size: 14px; }
+.vacio { color: #57534e; font-family: "Segoe UI", sans-serif; }

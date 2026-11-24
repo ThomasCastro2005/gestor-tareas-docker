@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gestor de tareas</title>
+    <link rel="stylesheet" href="/estilos.css" />
+  </head>
+  <body>
+    <header>
+      <div>
+        <p class="materia">Integración continua · Semana 5</p>
+        <h1>Gestor de tareas</h1>
+      </div>
+      <p id="estado" class="estado">Comprobando la base de datos…</p>
+    </header>
+    <main>
+      <form id="formulario">
+        <label for="titulo">Título</label>
+        <input id="titulo" name="titulo" maxlength="120" required />
+        <label for="descripcion">Descripción</label>
+        <textarea id="descripcion" name="descripcion" maxlength="500" rows="3"></textarea>
+        <button type="submit">Guardar tarea</button>
+        <p id="aviso" class="aviso" hidden></p>
+      </form>
+      <section>
+        <h2>Pendientes guardados</h2>
+        <ul id="lista"></ul>
+      </section>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>
