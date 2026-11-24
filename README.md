@@ -10,7 +10,7 @@ docker compose up -d --build
 
 La interfaz queda en http://localhost:3000. PostgreSQL no publica puerto hacia el equipo: solo lo alcanza el contenedor `app`, por el nombre `db`.
 
-Jenkins se levanta aparte, en el puerto 9090, con su propio motor Docker:
+Jenkins se levanta aparte, en el puerto 8888, con su propio motor Docker:
 
 ```bash
 cd operaciones/jenkins

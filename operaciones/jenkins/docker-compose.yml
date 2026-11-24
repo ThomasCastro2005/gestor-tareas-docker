@@ -11,7 +11,7 @@ services:
   controlador:
     build: ./controlador
     ports:
-      - "9090:8080"
+      - "8888:8080"
     environment:
       DOCKER_HOST: tcp://motor:2375
       JAVA_OPTS: "-Djenkins.install.runSetupWizard=false -Xmx768m"
